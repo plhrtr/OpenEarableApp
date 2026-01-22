@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:open_earable_flutter/open_earable_flutter.dart';
+import 'package:open_wearable/apps/handfree_video_player/ui/video_player/widgets/video_player_screen.dart';
 import 'package:open_wearable/apps/heart_tracker/widgets/heart_tracker_page.dart';
 import 'package:open_wearable/apps/posture_tracker/model/earable_attitude_tracker.dart';
 import 'package:open_wearable/apps/posture_tracker/view/posture_tracker_view.dart';
@@ -69,12 +70,22 @@ List<AppInfo> _apps = [
   ),
   AppInfo(
     logoPath: "lib/apps/spatial_trainer/assets/logo.png",
-    title: "Spatial Trainer",
-    description: "Train your spatial audio awareness",
-    widget: PlatformScaffold(
-      appBar: PlatformAppBar(
-        title: PlatformText("Spatial Trainer"),
-      ),
+    title: "Handsfree video player",
+    description: "View your YouTube videos without using your hands",
+    widget: SelectEarableView(
+      startApp: (wearable, sensorConfigurationProvider) {
+        if (wearable is SensorManager) {
+          return VideoPlayerScreen(wearable: wearable as SensorManager);
+        }
+        return PlatformScaffold(
+          appBar: PlatformAppBar(
+            title: PlatformText("Handsfree video player"),
+          ),
+          body: Center(
+            child: PlatformText("Invalid wearable"),
+          ),
+        );
+      },
     ),
   ),
 ];

@@ -54,7 +54,6 @@ dependencies:
   shared_preferences: ^2.5.3
   url_launcher: ^6.3.2
   go_router: ^14.6.2
-  flutter_soloud: ^3.4.8
 
 dev_dependencies:
   flutter_test:
@@ -81,7 +80,7 @@ flutter:
   assets:
     - lib/apps/posture_tracker/assets/
     - lib/apps/heart_tracker/assets/
-    - lib/apps/spatial_trainer/assets/
+    - lib/apps/handfree_video_player/assets/
 
   # An image asset can refer to one or more resolution-specific "variants", seeq
   # https://flutter.dev/to/resolution-aware-images
