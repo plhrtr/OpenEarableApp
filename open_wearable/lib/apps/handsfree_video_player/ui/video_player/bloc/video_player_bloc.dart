@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:open_wearable/apps/handfree_video_player/data/repositories/gesture_tracker.dart';
-import 'package:open_wearable/apps/handfree_video_player/ui/video_player/bloc/video_player_events.dart';
-import 'package:open_wearable/apps/handfree_video_player/ui/video_player/bloc/video_player_state.dart';
+import 'package:open_wearable/apps/handsfree_video_player/data/repositories/gesture_tracker.dart';
+import 'package:open_wearable/apps/handsfree_video_player/ui/video_player/bloc/video_player_events.dart';
+import 'package:open_wearable/apps/handsfree_video_player/ui/video_player/bloc/video_player_state.dart';
 
 class VideoPlayerBloc extends Bloc<VideoPlayerEvent, VideoPlayerState> {
   final GestureTracker _gestureTracker;

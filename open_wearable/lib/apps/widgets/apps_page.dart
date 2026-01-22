@@ -1,14 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:open_earable_flutter/open_earable_flutter.dart';
-import 'package:open_wearable/apps/handfree_video_player/ui/video_player/widgets/video_player_screen.dart';
+import 'package:open_wearable/apps/handsfree_video_player/ui/video_selection/widgets/video_selection_screen.dart';
 import 'package:open_wearable/apps/heart_tracker/widgets/heart_tracker_page.dart';
 import 'package:open_wearable/apps/posture_tracker/model/earable_attitude_tracker.dart';
 import 'package:open_wearable/apps/posture_tracker/view/posture_tracker_view.dart';
 import 'package:open_wearable/apps/widgets/select_earable_view.dart';
 import 'package:open_wearable/apps/widgets/app_tile.dart';
+import 'package:provider/provider.dart';
 
 class AppInfo {
   final String logoPath;
@@ -75,7 +77,27 @@ List<AppInfo> _apps = [
     widget: SelectEarableView(
       startApp: (wearable, sensorConfigurationProvider) {
         if (wearable is SensorManager) {
-          return VideoPlayerScreen(wearable: wearable as SensorManager);
+          final sensors = (wearable as SensorManager).sensors;
+
+          // Only show the app when the selected earable has an IMU Sensor
+          if (sensors.any((s) => s.sensorName.contains("Gyroscope"))) {
+            Sensor gyro = sensors.firstWhere(
+              (s) => s.sensorName.contains("Gyroscope"),
+            );
+
+            return Provider.value(
+              value: gyro,
+              child: VideoSelectionScreen(),
+            );
+          }
+          return PlatformScaffold(
+            appBar: PlatformAppBar(
+              title: PlatformText("Handsfree video player"),
+            ),
+            body: Center(
+              child: PlatformText("No gyroscope sensor found"),
+            ),
+          );
         }
         return PlatformScaffold(
           appBar: PlatformAppBar(

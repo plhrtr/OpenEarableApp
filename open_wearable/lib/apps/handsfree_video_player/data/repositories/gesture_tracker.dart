@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:open_wearable/apps/handfree_video_player/data/services/gyroscope_service.dart';
+import 'package:open_wearable/apps/handsfree_video_player/data/services/gyroscope_service.dart';
 
 enum Gesture {
   yawLeft,
