@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:open_earable_flutter/open_earable_flutter.dart';
 import 'package:open_wearable/apps/handsfree_video_player/data/repositories/gesture_tracker.dart';
 import 'package:open_wearable/apps/handsfree_video_player/data/services/gyroscope_service.dart';
-import 'package:open_wearable/apps/handsfree_video_player/ui/tutorial/widgets/tutorial_screen.dart';
-import 'package:open_wearable/apps/handsfree_video_player/ui/video_player/bloc/video_player_bloc.dart';
-import 'package:open_wearable/apps/handsfree_video_player/ui/video_player/widgets/video_player_screen.dart';
+import 'package:open_wearable/apps/handsfree_video_player/ui/tutorial/tutorial_screen.dart';
+import 'package:open_wearable/apps/handsfree_video_player/ui/video_player/video_player_screen.dart';
+import 'package:provider/provider.dart';
 
 class VideoSelectionScreen extends StatefulWidget {
   const VideoSelectionScreen({super.key});
@@ -45,12 +44,9 @@ class _VideoSelectionScreenState extends State<VideoSelectionScreen> {
       platformPageRoute(
         context: context,
         builder: (context) {
-          return RepositoryProvider(
-            create: (context) => GestureTracker(GyroscopeService(gyro)),
-            child: BlocProvider(
-              create: (context) => VideoPlayerBloc(context.read()),
-              child: VideoPlayerScreen(),
-            ),
+          return VideoPlayerScreen(
+            url: url,
+            gestureTracker: GestureTracker(GyroscopeService(gyro)),
           );
         },
       ),
@@ -64,7 +60,7 @@ class _VideoSelectionScreenState extends State<VideoSelectionScreen> {
         title: PlatformText("Handsfree video player"),
         trailingActions: [
           PlatformIconButton(
-            icon: const Icon(Icons.info_outline),
+            icon: Icon(Icons.info_outline),
             onPressed: () {
               Navigator.push(
                 context,
