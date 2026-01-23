@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:open_earable_flutter/open_earable_flutter.dart';
-import 'package:open_wearable/apps/handsfree_video_player/data/repositories/gesture_tracker.dart';
-import 'package:open_wearable/apps/handsfree_video_player/data/services/gyroscope_service.dart';
-import 'package:open_wearable/apps/handsfree_video_player/ui/tutorial/tutorial_screen.dart';
-import 'package:open_wearable/apps/handsfree_video_player/ui/video_player/video_player_screen.dart';
+import 'package:open_wearable/apps/handsfree_youtube_player/data/repositories/gesture_tracker.dart';
+import 'package:open_wearable/apps/handsfree_youtube_player/data/services/gyroscope_service.dart';
+import 'package:open_wearable/apps/handsfree_youtube_player/ui/tutorial/tutorial_screen.dart';
+import 'package:open_wearable/apps/handsfree_youtube_player/ui/video_player/video_player_screen.dart';
 import 'package:provider/provider.dart';
 
 class VideoSelectionScreen extends StatefulWidget {

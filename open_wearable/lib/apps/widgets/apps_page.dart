@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:open_earable_flutter/open_earable_flutter.dart';
-import 'package:open_wearable/apps/handsfree_video_player/ui/video_selection/video_selection_screen.dart';
+import 'package:open_wearable/apps/handsfree_youtube_player/ui/video_selection/video_selection_screen.dart';
 import 'package:open_wearable/apps/heart_tracker/widgets/heart_tracker_page.dart';
 import 'package:open_wearable/apps/posture_tracker/model/earable_attitude_tracker.dart';
 import 'package:open_wearable/apps/posture_tracker/view/posture_tracker_view.dart';
@@ -71,8 +71,8 @@ List<AppInfo> _apps = [
     ),
   ),
   AppInfo(
-    logoPath: "lib/apps/spatial_trainer/assets/logo.png",
-    title: "Handsfree video player",
+    logoPath: "lib/apps/handsfree_youtube_player/assets/logo.png",
+    title: "Handsfree YouTube Player",
     description: "View your YouTube videos without using your hands",
     widget: SelectEarableView(
       startApp: (wearable, sensorConfigurationProvider) {
@@ -92,7 +92,7 @@ List<AppInfo> _apps = [
           }
           return PlatformScaffold(
             appBar: PlatformAppBar(
-              title: PlatformText("Handsfree video player"),
+              title: PlatformText("Handsfree YouTube Player"),
             ),
             body: Center(
               child: PlatformText("No gyroscope sensor found"),
@@ -101,7 +101,7 @@ List<AppInfo> _apps = [
         }
         return PlatformScaffold(
           appBar: PlatformAppBar(
-            title: PlatformText("Handsfree video player"),
+            title: PlatformText("Handsfree YouTube Player"),
           ),
           body: Center(
             child: PlatformText("Invalid wearable"),
