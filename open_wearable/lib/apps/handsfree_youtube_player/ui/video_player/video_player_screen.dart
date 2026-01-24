@@ -4,9 +4,18 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:open_wearable/apps/handsfree_youtube_player/data/repositories/gesture_tracker.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+/// A screen that displays a YouTube video player with handsfree gesture controls.
+///
+/// This widget allows the user to play a YouTube video and control playback
+/// (skip forward/backward, pause/play) using head gestures detected by [GestureTracker].
 class VideoPlayerScreen extends StatefulWidget {
+  /// The YouTube video URL to play.
   final String url;
+
+  /// The gesture tracker used to listen for head gestures.
   final GestureTracker gestureTracker;
+
+  /// Creates a [VideoPlayerScreen].
   const VideoPlayerScreen({
     super.key,
     required this.url,
@@ -17,11 +26,21 @@ class VideoPlayerScreen extends StatefulWidget {
   State<VideoPlayerScreen> createState() => _VideoPlayerScreenState();
 }
 
+/// State for [VideoPlayerScreen], manages video playback and gesture handling.
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
+  /// Message shown when skipping backwards.
   static final yawLeftMessage = "Skipped ${skipDuration}s backwards";
+
+  /// Message shown when skipping forward.
   static final yawRightMessage = "Skipped ${skipDuration}s forward";
+
+  /// Message shown when toggling pause/play.
   static final pitchUpMessage = "Toggled paused state";
+
+  /// Number of seconds to skip.
   static final skipDuration = 30;
+
+  /// Controller for the YouTube player.
   late YoutubePlayerController _youtubeController;
 
   @override
@@ -68,6 +87,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     });
   }
 
+  /// Shows a temporary toast message using a [SnackBar].
+  ///
+  /// [context] is the build context.
+  /// [toast] is the message to display.
   void _showToast(BuildContext context, String toast) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final messenger = ScaffoldMessenger.of(context);

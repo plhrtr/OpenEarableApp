@@ -7,15 +7,24 @@ import 'package:open_wearable/apps/handsfree_youtube_player/ui/tutorial/tutorial
 import 'package:open_wearable/apps/handsfree_youtube_player/ui/video_player/video_player_screen.dart';
 import 'package:provider/provider.dart';
 
+/// The main screen for selecting a YouTube video.
+///
+/// Allows the user to enter a YouTube video URL and navigate to the video player.
+/// Also provides access to the tutorial screen.
 class VideoSelectionScreen extends StatefulWidget {
+  /// Creates a [VideoSelectionScreen].
   const VideoSelectionScreen({super.key});
 
   @override
   State<VideoSelectionScreen> createState() => _VideoSelectionScreenState();
 }
 
+/// State for [VideoSelectionScreen], manages URL input and navigation.
 class _VideoSelectionScreenState extends State<VideoSelectionScreen> {
+  /// Controller for the YouTube URL input field.
   final TextEditingController _urlController = TextEditingController();
+
+  /// Error message to display if the URL is invalid or empty.
   String? _errorText;
 
   @override
@@ -24,6 +33,7 @@ class _VideoSelectionScreenState extends State<VideoSelectionScreen> {
     super.dispose();
   }
 
+  /// Handles the Play button press.
   void _playVideo(BuildContext context) {
     final gyro = context.read<Sensor>();
     final url = _urlController.text.trim();
@@ -90,10 +100,17 @@ class _VideoSelectionScreenState extends State<VideoSelectionScreen> {
   }
 }
 
+/// A text input field for entering a YouTube video URL.
+///
+/// Displays an error message if [errorText] is not null.
 class _UrlInputField extends StatelessWidget {
+  /// Controller for the text field.
   final TextEditingController controller;
+
+  /// Error message to display below the field.
   final String? errorText;
 
+  /// Creates a [_UrlInputField].
   const _UrlInputField({
     required this.controller,
     this.errorText,
@@ -123,9 +140,12 @@ class _UrlInputField extends StatelessWidget {
   }
 }
 
+/// A button that triggers video playback when pressed.
 class _PlayButton extends StatelessWidget {
+  /// Callback to invoke when the button is pressed.
   final VoidCallback onPressed;
 
+  /// Creates a [_PlayButton].
   const _PlayButton({required this.onPressed});
 
   @override
